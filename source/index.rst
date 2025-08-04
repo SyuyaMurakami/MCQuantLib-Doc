@@ -11,6 +11,7 @@
    Process.rst
    Payoff.rst
    Calendar.rst
+   Path.rst
    Product.rst
    SelfDefinedOption.rst
 
