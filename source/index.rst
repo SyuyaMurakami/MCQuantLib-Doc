@@ -14,6 +14,8 @@
    Path.rst
    Product.rst
    SelfDefinedOption.rst
+   WithRiskQuantLib.rst
+   About.rst
 
 Welcome to Use MCQuantLib
 ===========================
