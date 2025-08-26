@@ -316,23 +316,17 @@ If you prefer a ``QuantLib Style`` and want to use calendar object:
     import pandas as pd
     import QuantLib as ql
     from MCQuantLib import SnowBall, PlainVanillaPayoff, Calendar
-    # instantiate a Calendar object so you can use it to generate periodic pd.Timestamp array
     calendar = Calendar(ql.Japan())
-    # this should be a trading day
     start = pd.Timestamp(2024, 7, 9)
     assert calendar.isTrading(start)
-    # monthly trading dates excluding the start
     monthlyDates = calendar.makeScheduleByPeriod(start, "1m", 13)[1:]
-    # a short put payoff
     shortPut = - PlainVanillaPayoff(optionType=-1, strike=100)
-    # instantiate the structured product
     option = SnowBall(
         startDate=start, initialPrice=100, knockOutBarrier=105,
         knockOutObservationDate=monthlyDates, knockInBarrier=80, knockInObservationDate="daily",
         knockInPayoff=shortPut, knockOutCouponRate=0.15,
         maturityCouponRate=0.15, calendar=calendar
     )
-    # value the contract given day and spot price
     option.value(pd.Timestamp(2024, 8, 8), 102, False, mc, bs)
 
 
